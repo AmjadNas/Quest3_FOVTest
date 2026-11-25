@@ -1,0 +1,37 @@
+{
+  "BackgroundLuminanceCd": 2,
+  "CursorContrast": 6,
+  "FixationDotContrast": 8,
+  "FixationCircleContrast": 2,
+  "ResponseLinesContrast": 1,
+  "FixedCircleRadiusDegrees": 32,
+  "ResponseLinesInnerBoundDegrees": 2,
+  "ResponseLinesOuterBoundDegrees": 32,
+  "ApproxTestDurSec": 153,
+  "ProgressBar": {
+    "Algorithm": "Exact",
+    "NumStimLeft": 17,
+    "NumStimRight": 17
+  },
+  "ResponseTimeoutSec": 2,
+  "AllowSkipUnseen": true,
+  "IsBundled": false,
+  "ReportBranch": "General",
+  "TimeLimitMinutes": 5,
+  "UseResultsFromBlindspotLocalizerIfPresent": false,
+  "ReduceStimuliMode": "NeverReduce",
+  "Rules": {
+    "fixed_blindspot": {
+      "Type": "FixedContrast",
+      "Contrast": 2,
+      "TimesToTest": 1,
+      "TimesToRetestIfMissed": 0
+    },
+    "fixed_training": {
+      "Type": "FixedContrast",
+      "Contrast": 2,
+      "TimesToTest": 1,
+      "TimesToRetestIfMissed": 1
+    }
+  }
+}

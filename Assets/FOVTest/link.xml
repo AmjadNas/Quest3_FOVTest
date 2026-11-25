@@ -1,0 +1,4 @@
+<linker>
+  <!-- Log and settings classes are filled by reflection (Newtonsoft), so IL2CPP must not strip them. -->
+  <assembly fullname="FOVTest.Runtime" preserve="all" />
+</linker>

@@ -1,0 +1,23 @@
+{
+    "name": "FOVTest.Editor",
+    "rootNamespace": "FOVTest.EditorTools",
+    "references": [
+        "FOVTest.Runtime",
+        "Oculus.VR",
+        "Oculus.VR.Editor",
+        "Unity.XR.Management",
+        "Unity.XR.Management.Editor",
+        "Unity.XR.OpenXR",
+        "Unity.XR.OpenXR.Editor",
+        "Unity.XR.OpenXR.Features.MetaQuestSupport"
+    ],
+    "includePlatforms": ["Editor"],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

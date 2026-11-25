@@ -1,0 +1,44 @@
+# Unity generated
+/[Ll]ibrary/
+/[Tt]emp/
+/[Oo]bj/
+/[Bb]uild/
+/[Bb]uilds/
+/[Ll]ogs/
+/[Uu]ser[Ss]ettings/
+/[Mm]emoryCaptures/
+/[Rr]ecordings/
+/.utmp/
+/.gradle/
+
+# Builds and signing
+*.apk
+*.aab
+*.keystore
+*.jks
+
+# IDE
+.vs/
+.vscode/
+.idea/
+*.csproj
+*.sln
+*.slnx
+*.suo
+*.user
+*.pidb
+*.booproj
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Participant data: never commit logs pulled from a headset
+/Logs_from_headset/
+/LogsExtra*/
+*_VisualField.json
+
+# Reference log data used by some tests. Kept on the local machine; the tests skip when it is missing.
+/Assets/FOVTest/Tests/Editor/Fixtures/
+/Assets/FOVTest/Tests/Editor/Fixtures.meta

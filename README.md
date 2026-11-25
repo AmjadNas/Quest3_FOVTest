@@ -50,7 +50,8 @@ Each log has a companion with the same name in `files/LogsExtra` (pull it the sa
 The companion records, for every flash, the target direction, the head direction and roll at the flash and at the response, and
 where straight ahead was; every time straight ahead was set and why; and trials discarded because of recentering or a removed headset.
 
-Recentering during a test discards the trial in progress (its location is tested again) and moves the target area to the new
+Straight ahead is the head direction when A is pressed on "The test starts now". That text stays in front of the head, so face
+comfortably forward before pressing. Recentering during a test discards the trial in progress (its location is tested again) and moves the target area to the new
 straight ahead.
 
 Differences from the reference file:

@@ -15,6 +15,7 @@ namespace FOVTest
         const float MenuBackground = 0.12f;     // dark, so the eyes are already close to the test background
         const float MenuText = 0.55f;
         const int PracticeTrials = 4;
+        const float TextFollowDeg = 25f;        // wider than half a line of text, so that reading does not move it
 
         [SerializeField] Shader spotShader;
         [SerializeField] Shader textShader;
@@ -30,6 +31,7 @@ namespace FOVTest
         Sounds sounds;
         readonly List<Spot> map = new List<Spot>();
         Transform mapRoot;
+        bool wasActive;
 
         public void SetShaders(Shader spot, Shader txt)
         {
@@ -270,7 +272,9 @@ namespace FOVTest
             }
             if (!test.Aborted)
             {
-                yield return Message("The test starts now.\n\nLook straight ahead and press A.");
+                // The text keeps in front of the head, so it cannot pull the head to one side: straight ahead,
+                // the center of the test, is then the way the participant naturally faces when pressing A.
+                yield return Message("The test starts now.\n\nFace straight ahead, comfortably, and press A.", true);
                 text.text = "";
                 test.SetPrimaryToHead("test start");
                 yield return test.Run(spots);
@@ -282,14 +286,15 @@ namespace FOVTest
             yield return Results(done, saveError);
         }
 
-        IEnumerator Message(string msg)
+        IEnumerator Message(string msg, bool followHead = false)
         {
             PlaceText();
             text.text = msg;
             yield return null;
             while (!input.ConfirmDown)
             {
-                KeepTextInView();
+                if (followHead) TextAlongHead();
+                else KeepTextInView();
                 yield return null;
             }
             text.text = "";
@@ -375,8 +380,20 @@ namespace FOVTest
         /// <summary>Bring the text back if it is out of view, e.g. the app started with the headset off.</summary>
         void KeepTextInView()
         {
+            // Tracking starts (or the headset is put on) after the app does: place the text again from a real head pose.
+            bool active = input.Active;
+            if (active && !wasActive) PlaceText();
+            wasActive = active;
             var to = text.transform.position - input.HeadPosition;
-            if (Vector3.Angle(to, input.HeadForward) > 40f || Mathf.Abs(to.magnitude - 2f) > 0.5f) PlaceText();
+            float turned = Mathf.DeltaAngle(HeadAngles.Yaw(to), HeadAngles.Yaw(input.HeadForward));
+            if (Mathf.Abs(turned) > TextFollowDeg || Mathf.Abs(to.magnitude - 2f) > 0.5f) PlaceText();
+        }
+
+        /// <summary>Text fixed in front of the head, wherever it points.</summary>
+        void TextAlongHead()
+        {
+            text.transform.position = input.HeadPosition + input.HeadForward * 2f;
+            text.transform.rotation = Quaternion.LookRotation(input.HeadForward, Vector3.up);
         }
 
         /// <summary>Put the text 2 m ahead of where the head is facing now.</summary>
